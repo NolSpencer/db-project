@@ -8,9 +8,11 @@
     "vue": "node server --port=8080 --serve=8079"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.2",
+    "express-session": "^1.17.1",
     "mysql": "^2.18.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
