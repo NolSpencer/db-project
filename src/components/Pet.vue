@@ -26,8 +26,8 @@ export default {
   methods: {
     async adopt() {
       let data = await (
-        await fetch("/session", {
-          method: "GET",
+        await fetch("/adoption", {
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },

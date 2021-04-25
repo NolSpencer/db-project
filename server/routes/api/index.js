@@ -1,7 +1,6 @@
 let express = require('express');
 let path = require('path');
 let bcrypt = require('bcrypt');
-const e = require('express');
 let router = express.Router();
 const saltRounds = 10;
 exports.router = router;
@@ -40,20 +39,20 @@ router.post('/signup', express.json(), (req, res) => {
     bcrypt.genSalt(saltRounds, function (err, salt) {
         bcrypt.hash(req.body.password, salt, function (err, hash) {
             mysql.query(`INSERT INTO contact (firstname,lastname,phone_no,email,addr1,addr2,city,state,zip,password) VALUES (?);`,
-            [
                 [
-                    req.body.firstname,
-                    req.body.lastname,
-                    req.body.phone_no,
-                    req.body.email,
-                    req.body.addr1,
-                    req.body.addr2,
-                    req.body.city,
-                    req.body.state,
-                    req.body.zip,
-                    hash
-                ]
-            ],
+                    [
+                        req.body.firstname,
+                        req.body.lastname,
+                        req.body.phone_no,
+                        req.body.email,
+                        req.body.addr1,
+                        req.body.addr2,
+                        req.body.city,
+                        req.body.state,
+                        req.body.zip,
+                        hash
+                    ]
+                ],
                 function (err, results) {
                     if (err) {
                         throw err;
@@ -66,24 +65,41 @@ router.post('/signup', express.json(), (req, res) => {
 });
 
 router.post('/login', express.json(), async (req, res) => {
-    let data = await new Promise(function(resolve, reject) {
+    let data = await new Promise(function (resolve, reject) {
         mysql.query(`SELECT email, password FROM contact WHERE email = ?`,
-        [
-            req.body.email
-        ]
-        , function(err, results) {
-          if (err) {
-            reject(err);
-          } else {
-                resolve(results[0]);
-          }
-        });
-       });
+            [
+                req.body.email
+            ]
+            , function (err, results) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(results[0]);
+                }
+            });
+    });
     const match = await bcrypt.compare(req.body.password, data.password);
-    if(match) {
+    if (match) {
         req.session.user = req.body.email;
         res.send(true);
-    } else{
+    } else {
         res.send(false);
     }
 });
+// router.post('/adoptionrecords', express.json(), (req, res) => {
+//     var money = '$250';
+//     var utc = new Date().toJSON.slice(0,10).replace(/-/g,'/');
+//     mysql.query(`INSERT INTO adoption (adopt_date, adopt_fee, contact_id, pet_id) VALUES (?,?,(SELECT id FROM contact where email = ?), ?);`,
+//         [
+//             utc,
+//             money,
+//             req.body.id
+//         ],
+//         function (err, results) {
+//             if (err) {
+//                 throw err;
+//             } else {
+//                 res.json(results);
+//             }
+//         })
+// });
