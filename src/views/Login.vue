@@ -17,9 +17,7 @@ export default {
             email: "",
             password: "",
       },
-      error: {
-          error: null,
-      }
+      
     };
   },
   methods: {
@@ -33,7 +31,8 @@ export default {
           body: JSON.stringify(this.info)
         })
       ).text();
-      console.log(data);
+      if(data == "true"){this.$router.push({ path: `/pets` })}
+      //console.log(data);
     },
   },
 };

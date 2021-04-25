@@ -4,6 +4,7 @@
     <span class="petdata">
         <img :src="'/api/pet/' + data.id + '/image'" style="grid-area:image"/>
         <p style="grid-area:description">{{data.description}}</p>
+        <button @click="adopt">Adopt</button>
     </span>
     <br>
     {{ data }}
@@ -21,6 +22,20 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    async adopt() {
+      let data = await (
+        await fetch("/session", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(this.info)
+        })
+      ).text();
+      console.log(data);
+    },
   },
 };
 </script>
