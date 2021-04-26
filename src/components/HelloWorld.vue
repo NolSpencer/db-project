@@ -24,7 +24,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-p1{ 
+.p1{ 
   font-size: 20px;
 }
 h3 {

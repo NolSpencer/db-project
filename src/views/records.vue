@@ -1,6 +1,6 @@
 <template>
   <div class="facilities">
-      <div v-for="records in recordss" :key="records.id" style="margin: 10px;">
+      <div v-for="records in Records" :key="records.id" style="margin: 10px;">
         <RecordsView :data="records" ></RecordsView>
       </div>
   </div>
@@ -12,7 +12,7 @@ import RecordsView from "@/components/Records.vue";
 
 export default {
   name: "records",
-  components: { Recordsview },
+  components: { RecordsView },
   data() {
     return {
       Records: [],
@@ -20,7 +20,7 @@ export default {
   },
   async mounted() {
       let data = await (await fetch('/api/records.json')).json();
-      this.records = data;
+      this.Records = data;
   },
 };
 </script>

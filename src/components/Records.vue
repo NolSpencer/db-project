@@ -1,11 +1,10 @@
 <template>
   <div class="pet">
-    <h1>{{ data.name }} - {{data.city}}</h1>
-    <span class="petdata">
-        <p style="grid-area:description">{{data.email}}</p>
-    </span>
-    <br>
-    {{ data }}
+    <h1>Adoption Request: {{data.id}}</h1>
+    <p>Request date: {{data.adopt_date}}</p>
+    <p>Adoption fee: {{data.adopt_fee}}</p>
+    <p>Account email: {{data.email}}</p>
+    <p>Pet Name: {{data.name}}</p>
   </div>
 </template>
 
@@ -26,17 +25,6 @@ export default {
 
 <style lang = "scss" scoped>
 .pet{
-    img{
-        width: 200px;
-        height: auto;
-        padding: 10px;
-        border-radius: 1.5vh;
-    }
-    .petdata{
-        display:grid;
-        grid-template-areas: "image description";
-        
-    }
     background-color: rgba(128,128,128,.1);
     display: inline-block;
     max-width: 700px;
@@ -44,5 +32,6 @@ export default {
     margin-right: auto;
     border-radius: 1.5vh;
     padding: 10px;
+    width: 500px;
 }
 </style>

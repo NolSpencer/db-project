@@ -1,11 +1,9 @@
 <template>
   <div class="pet">
-    <h1>{{ data.name }} - {{data.city}}</h1>
-    <span class="petdata">
-        <p style="grid-area:description">{{data.email}}</p>
-    </span>
+    <h1>{{ data.name }}</h1>
+    <p>{{data.addr1}}, {{data.city}}, {{data.state}}, {{data.zip}}</p>
     <br>
-    {{ data }}
+    <p>Email: {{data.email}} <br> Phone Number: {{data.phone}}</p>
   </div>
 </template>
 
@@ -26,12 +24,7 @@ export default {
 
 <style lang = "scss" scoped>
 .pet{
-    img{
-        width: 200px;
-        height: auto;
-        padding: 10px;
-        border-radius: 1.5vh;
-    }
+    
     .petdata{
         display:grid;
         grid-template-areas: "image description";
@@ -44,5 +37,6 @@ export default {
     margin-right: auto;
     border-radius: 1.5vh;
     padding: 10px;
+    width: 400px;
 }
 </style>

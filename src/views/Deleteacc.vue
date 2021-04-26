@@ -1,17 +1,17 @@
 <template>
-  <div class="login">
-    <h1>LOGIN</h1>
+  <div class="delete">
+      <h1>Delete Account</h1>
     <input type="email" placeholder="Email" v-model="info.email" />
     <br>
     <input type="password" placeholder="Password" v-model="info.password" />
     <br>
-    <button @click="login">Login</button>
+    <button @click="deleteaccount">Delete</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Login",
+  name: "Deleteaccount",
   data() {
     return {
       info: {
@@ -22,9 +22,9 @@ export default {
     };
   },
   methods: {
-    async login() {
+    async deleteaccount() {
       let data = await (
-        await fetch("/api/login", {
+        await fetch("/api/deleteaccount", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -32,8 +32,7 @@ export default {
           body: JSON.stringify(this.info)
         })
       ).text();
-      if(data == "true"){this.$router.push({ path: `/pets` })}
-      //console.log(data);
+      console.log('ACCOUNT DELETED!');
     },
   },
 };

@@ -8,7 +8,10 @@ router.get('/hi', (req, res) => {
     res.send('hi chris')
 })
 router.get('/pets.json', (req, res) => {
-    mysql.query('SELECT * from pet', function (err, results) {
+    mysql.query(`SELECT pet.id,pet.name,type.description,breed.name,pet.age,pet.description,pet.weight,pet.size,pet.acquisitiondate,pet.sp_neu,location.name 
+        FROM pet,location,breed,type 
+        WHERE pet.type_id = type.id AND pet.breed_id = breed.id AND pet.location_id = location.id`
+        , function (err, results) {
         if (err) {
             throw err;
         } else {
@@ -111,11 +114,39 @@ router.post('/adoptionrecords', express.json(), (req, res) => {
         })
 });
 router.get('/records.json', (req, res) => {
-    mysql.query(`SELECT adopt.id,adopt.adopt_date,adopt.adopt_fee,contact.email,pet.name FROM contact,pet,adoption WHERE contact_id = contact.id AND pet_id = pet.id`, function (err, results) {
+    mysql.query(`SELECT adoption.id,adoption.adopt_date,adoption.adopt_fee,contact.email,pet.name FROM contact,pet,adoption WHERE contact_id = contact.id AND pet_id = pet.id`, function (err, results) {
         if (err) {
             throw err;
         } else {
             res.json(results);
         }
     })
+});
+router.post('/deleteaccount', express.json(), async (req, res) => {
+    let data = await new Promise(function (resolve, reject) {
+        mysql.query(`SELECT email, password FROM contact WHERE email = ?`,
+            [
+                req.body.email
+            ]
+            , function (err, results) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(results[0]);
+                }
+            });
+    });
+    const match = await bcrypt.compare(req.body.password, data.password);
+    if (match) {
+        mysql.query(`DELETE FROM contact WHERE email = ?`,[req.body.email], function (err, results) {
+            if (err) {
+                throw err;
+            } else {
+                res.json(results);
+            }
+        })
+        res.send(true);
+    } else {
+        res.send(false);
+    }
 });

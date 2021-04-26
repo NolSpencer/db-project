@@ -1,5 +1,6 @@
 <template>
   <div class="signup">
+    <h1>Signup</h1>
     <input type="firstname" placeholder="Firstname" v-model="info.firstname" />
     <input type="lastname" placeholder="Lastname" v-model="info.lastname" />
     <br />
@@ -57,3 +58,16 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+input{
+  width: 200px;
+  padding:10px;
+  margin: 4px;
+}
+button{
+  font-size: 18px;
+  width: 100px;
+  padding:10px;
+}
+</style>
