@@ -44,13 +44,15 @@ input{
   width:200px;
   padding: 10px;
   margin: 5px;
+  border-radius: 5px;
 }
 h1{
-  margin:-1px;
+  margin-top:5px;
 }
 button{
   width: 100px;
   padding: 10px;
   font-size: 20px;
+  border-radius: 7px;
 }
 </style>

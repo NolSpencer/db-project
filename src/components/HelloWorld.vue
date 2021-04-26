@@ -4,9 +4,6 @@
     <p1>
       Don't Shop! Adopt!
     </p1>
-    <h3> Welcome! </h3>
-    <h3> Meet Our Pets! </h3>
-    <h3> Call us! </h3>
     <h3> **DISCLAIMER** </h3>
     <p> **ALL DATA WAS TAKEN FROM ONE OF A KIND PETS** </p>
     <p> **PLEASE VISIT THEIR WEBSITE IF YOU WANT TO ADOPT** </p>
@@ -25,10 +22,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 p1{ 
-  font-size: 20px;
+  font-size: 30px;
 }
 h3 {
-  margin: 40px 0 0;
+  margin: 30px 0 0;
 }
 ul {
   list-style-type: none;

@@ -8,7 +8,7 @@ router.get('/hi', (req, res) => {
     res.send('hi chris')
 })
 router.get('/pets.json', (req, res) => {
-    mysql.query(`SELECT pet.id,pet.name,type.description,breed.name,pet.age,pet.description,pet.weight,pet.size,pet.acquisitiondate,pet.sp_neu,location.name 
+    mysql.query(`SELECT pet.id,pet.petname,type.typedescription,breed.breedname,pet.age,pet.petdescription,pet.weight,pet.size,pet.acquisitiondate,pet.sp_neu,location.facilityname 
         FROM pet,location,breed,type 
         WHERE pet.type_id = type.id AND pet.breed_id = breed.id AND pet.location_id = location.id`
         , function (err, results) {
@@ -114,7 +114,7 @@ router.post('/adoptionrecords', express.json(), (req, res) => {
         })
 });
 router.get('/records.json', (req, res) => {
-    mysql.query(`SELECT adoption.id,adoption.adopt_date,adoption.adopt_fee,contact.email,pet.name FROM contact,pet,adoption WHERE contact_id = contact.id AND pet_id = pet.id`, function (err, results) {
+    mysql.query(`SELECT adoption.id,adoption.adopt_date,adoption.adopt_fee,contact.email,pet.petname FROM contact,pet,adoption WHERE contact_id = contact.id AND pet_id = pet.id`, function (err, results) {
         if (err) {
             throw err;
         } else {

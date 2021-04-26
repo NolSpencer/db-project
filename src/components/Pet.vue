@@ -1,9 +1,9 @@
 <template>
   <div class="pet">
-    <h1>{{ data.name }}</h1>
+    <h1>{{ data.petname }} - {{data.breedname}}</h1>
     <span class="petdata">
       <p>
-        <img :src="'/api/pet/' + data.id + '/image'" />{{data.description}}
+        <img :src="'/api/pet/' + data.id + '/image'" />{{data.petdescription}}
         <br>
         <ul>
           <li>Age: {{data.age}}</li>
@@ -11,11 +11,12 @@
         </ul>
         <ul>
           <li>Size: {{data.size}}</li>
-          <li>Neutered: {{data.sp_neu}}</li>
+          <li>Fixed: {{data.sp_neu}}</li>
         </ul>
       </p>
     </span>
-    <h2>{{data.name}}</h2>
+    <br><br><br>
+    <h2>{{data.facilityname}}</h2>
     <button @click="adopt">Adopt</button>
   </div>
 </template>
@@ -75,7 +76,7 @@ export default {
   font-size: 20px;
   background-color: rgba(128,128,128,.1);
   display: inline-block;
-  max-width: 700px;
+  max-width: 750px;
   margin-left: auto;
   margin-right: auto;
   border-radius: 1.5vh;

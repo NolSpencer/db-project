@@ -4,7 +4,7 @@
     <p>Request date: {{data.adopt_date}}</p>
     <p>Adoption fee: {{data.adopt_fee}}</p>
     <p>Account email: {{data.email}}</p>
-    <p>Pet Name: {{data.name}}</p>
+    <p>Pet Name: {{data.petname}}</p>
   </div>
 </template>
 

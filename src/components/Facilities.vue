@@ -1,6 +1,6 @@
 <template>
   <div class="pet">
-    <h1>{{ data.name }}</h1>
+    <h1>{{ data.facilityname }}</h1>
     <p>{{data.addr1}}, {{data.city}}, {{data.state}}, {{data.zip}}</p>
     <br>
     <p>Email: {{data.email}} <br> Phone Number: {{data.phone}}</p>
