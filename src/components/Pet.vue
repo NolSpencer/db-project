@@ -1,6 +1,6 @@
 <template>
   <div class="pet">
-    <h1>{{ data.name }} - {{data.age}}</h1>
+    <h1>{{ data.name }} - {{data.age}} - {{data.type_id}}</h1>
     <span class="petdata">
         <img :src="'/api/pet/' + data.id + '/image'" style="grid-area:image"/>
         <p style="grid-area:description">{{data.description}}</p>
@@ -26,12 +26,12 @@ export default {
   methods: {
     async adopt() {
       let data = await (
-        await fetch("/adoption", {
+        await fetch("/api/adoptionrecords", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(this.info)
+          body: JSON.stringify(this.data)
         })
       ).text();
       console.log(data);

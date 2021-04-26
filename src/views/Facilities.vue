@@ -1,7 +1,7 @@
 <template>
   <div class="facilities">
       <div v-for="location in facilities" :key="location.id" style="margin: 10px;">
-        <Facilities :data="facilities" ></Facilities>
+        <Facilities :data="location" ></Facilities>
       </div>
   </div>
 </template>

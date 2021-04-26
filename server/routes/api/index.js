@@ -80,26 +80,42 @@ router.post('/login', express.json(), async (req, res) => {
     });
     const match = await bcrypt.compare(req.body.password, data.password);
     if (match) {
-        req.session.user = req.body.email;
+        req.session.user = data.email;
+        req.session.email = data.email;
         res.send(true);
     } else {
         res.send(false);
     }
 });
-// router.post('/adoptionrecords', express.json(), (req, res) => {
-//     var money = '$250';
-//     var utc = new Date().toJSON.slice(0,10).replace(/-/g,'/');
-//     mysql.query(`INSERT INTO adoption (adopt_date, adopt_fee, contact_id, pet_id) VALUES (?,?,(SELECT id FROM contact where email = ?), ?);`,
-//         [
-//             utc,
-//             money,
-//             req.body.id
-//         ],
-//         function (err, results) {
-//             if (err) {
-//                 throw err;
-//             } else {
-//                 res.json(results);
-//             }
-//         })
-// });
+router.post('/adoptionrecords', express.json(), (req, res) => {
+    var money = '$250';
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = yyyy + '/' + mm + '/' + dd;
+
+    mysql.query(`INSERT INTO adoption (adopt_date, adopt_fee, contact_id, pet_id) VALUES (?,?,(SELECT id FROM contact where email = ?), ?);`,
+        [
+            today,
+            money,
+            req.session.email,
+            req.body.id
+        ],
+        function (err, results) {
+            if (err) {
+                throw err;
+            } else {
+                res.json(results);
+            }
+        })
+});
+router.get('/records.json', (req, res) => {
+    mysql.query(`SELECT adopt.id,adopt.adopt_date,adopt.adopt_fee,contact.email,pet.name FROM contact,pet,adoption WHERE contact_id = contact.id AND pet_id = pet.id`, function (err, results) {
+        if (err) {
+            throw err;
+        } else {
+            res.json(results);
+        }
+    })
+});

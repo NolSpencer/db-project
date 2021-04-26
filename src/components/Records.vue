@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "Facilities",
+  name: "RecordsView",
   props: {
     data: {
       type: Object,
