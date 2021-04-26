@@ -6,12 +6,14 @@
         <img :src="'/api/pet/' + data.id + '/image'" />{{data.petdescription}}
         <br>
         <ul>
+          <li>Sex: {{data.sex}}</li>
           <li>Age: {{data.age}}</li>
           <li>Weight: {{data.weight}}</li>
         </ul>
         <ul>
           <li>Size: {{data.size}}</li>
           <li>Fixed: {{data.sp_neu}}</li>
+          <li>Price: $250</li>
         </ul>
       </p>
     </span>

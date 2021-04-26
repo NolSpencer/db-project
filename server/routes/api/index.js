@@ -8,7 +8,7 @@ router.get('/hi', (req, res) => {
     res.send('hi chris')
 })
 router.get('/pets.json', (req, res) => {
-    mysql.query(`SELECT pet.id,pet.petname,type.typedescription,breed.breedname,pet.age,pet.petdescription,pet.weight,pet.size,pet.acquisitiondate,pet.sp_neu,location.facilityname 
+    mysql.query(`SELECT pet.id,pet.petname,type.typedescription,breed.breedname,pet.age,pet.petdescription,pet.weight,pet.size,pet.acquisitiondate,pet.sp_neu, pet.sex,location.facilityname 
         FROM pet,location,breed,type 
         WHERE pet.type_id = type.id AND pet.breed_id = breed.id AND pet.location_id = location.id`
         , function (err, results) {
@@ -138,7 +138,7 @@ router.post('/deleteaccount', express.json(), async (req, res) => {
     });
     const match = await bcrypt.compare(req.body.password, data.password);
     if (match) {
-        mysql.query(`DELETE FROM contact WHERE email = ?`,[req.body.email], function (err, results) {
+        mysql.query(`DELETE FROM contact,adoption WHERE email = ?`,[req.body.email], function (err, results) {
             if (err) {
                 throw err;
             } else {
