@@ -4,16 +4,15 @@
 ```
 npm install
 ```
-
-### Compiles and hot-reloads for development
+### TO run backend
+```
+npm run vue
+```
+### THEN do this on separate bash
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
+MAKE SURE YOU HAVE XAMPP RUNNING
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
