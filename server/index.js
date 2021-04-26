@@ -42,3 +42,7 @@ server.listen(port, function() {
 var connection = mysql.createConnection(config);
 connection.connect();
 global.mysql = connection;
+
+process.on('uncaughtException', (err) => {
+  console.error(err);
+});

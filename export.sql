@@ -101,7 +101,8 @@ CREATE DATABASE pet_adoptionDB;
         `city` varchar(35),
         `state` char(2),
         `zip` varchar(20),
-        `password` varchar(100) NOT NULL
+        `password` varchar(100) NOT NULL,
+        `account_active` boolean not null DEFAULT true
     )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
     CREATE TABLE `ADOPTION`(
@@ -109,7 +110,8 @@ CREATE DATABASE pet_adoptionDB;
         `adopt_date` DATE,
         `adopt_fee` varchar(8) NOT NULL,
         `contact_id` int NOT NULL,
-        `pet_id` int NOT NULL
+        `pet_id` int NOT NULL,
+        `adopt_active` boolean not null DEFAULT true
     )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
     CREATE TABLE `PICTURES`(

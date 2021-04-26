@@ -138,14 +138,22 @@ router.post('/deleteaccount', express.json(), async (req, res) => {
     });
     const match = await bcrypt.compare(req.body.password, data.password);
     if (match) {
-        mysql.query(`DELETE FROM contact,adoption WHERE email = ?`,[req.body.email], function (err, results) {
+        mysql.query(`DELETE from adoption where contact_id = (SELECT id from contact where email = ?)`,[req.body.email],
+            function (err, results) {
             if (err) {
                 throw err;
             } else {
                 res.json(results);
             }
         })
-        res.send(true);
+        mysql.query(`DELETE from contact where email = ?`,[req.body.email],
+            function (err, results) {
+            if (err) {
+                throw err;
+            } else {
+                res.json(results);
+            }
+        })
     } else {
         res.send(false);
     }
