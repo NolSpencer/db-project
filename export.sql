@@ -95,7 +95,7 @@ CREATE DATABASE pet_adoptionDB;
         `firstname` varchar(25) NOT NULL, 
         `lastname` varchar(25) NOT NULL,
         `phone_no` varchar(20),
-        `email` varchar(100) NOT NULL, 
+        `email` varchar(100) NOT NULL UNIQUE,
         `addr1` varchar(100),
         `addr2` varchar(100),
         `city` varchar(35),
@@ -103,11 +103,6 @@ CREATE DATABASE pet_adoptionDB;
         `zip` varchar(20),
         `password` varchar(100) NOT NULL
     )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-    -- INSERTING CONTACT DATA
-
-    INSERT INTO `CONTACT` (`id`,`firstname`,`lastname`,`phone_no`,`email`,`addr1`,`addr2`,`city`,`state`,`zip`,`password`) VALUES
-    ('1','Nolan','Spencer',NULL,'nspencer3513@gmail.com',NULL,NULL,NULL,NULL,NULL,'12345');
 
     CREATE TABLE `ADOPTION`(
         `id` int(11) NOT NULL,
