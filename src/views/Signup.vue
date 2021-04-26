@@ -64,10 +64,12 @@ input{
   width: 200px;
   padding:10px;
   margin: 4px;
+  border-radius: 5px;
 }
 button{
   font-size: 18px;
   width: 100px;
   padding:10px;
+  border-radius: 5px;
 }
 </style>
